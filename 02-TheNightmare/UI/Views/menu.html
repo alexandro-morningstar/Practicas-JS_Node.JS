@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="../Styles/reset.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="../Styles/Styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <title>Menu</title>
+    </head>
+    <body>
+        <header>
+            <p id="error"></h2>
+        </header>
+        <main>
+            <div id="title" class="to-change"> <!--Contenedor de los titulos-->
+                <div id="jap-title" class="jap-text">
+                    <h1><p>悪<br>夢</p></h1>
+                </div>
+                <div id="esp-title" class="esp-text">
+                    <h1><p>La<br>Pesadilla</p></h1>
+                </div>
+            </div> <!--Fin del contenedor del los titulos-->
+            <section> <!--Contenedor del formulario game.html-->
+                <form id="form-in" action="game.html"> <!--Al hacer un submit se manejan los datos con App.js y Data.js, luego se raliza el action="game.html"-->
+                    <div id="form-avatar"> <!--Contenedor de la sección de avatar-->
+                        <div id="avatar-title" class="to-change">
+                            <div class="jap-text">
+                                <label for="avatar-container">被害者を選んでください: </label>
+                            </div>
+                            <div class="esp-text">
+                                <label for="avatar-container">Por favor, elige una victima: </label>
+                            </div>
+                        </div>
+                        <div id="avatar"> <!--Contenedor del avatar seleccionado-->
+                            <div id="avatar-container">
+                                <img src="../Img/Summon-background.png" alt="Summon´s imagen zone" draggable="false">
+                            </div>
+                        </div> <!--Fin del conenedor del avatar seleccionado-->
+                        <div id="avatar-grid"> <!--Contenedor de las opciones de avatares-->
+                            <div class="avatar-item">
+                                <img src="../Img/SkullZydr.png" alt="SkullZydr" width="150" draggable="true">
+                            </div>
+                            <div class="avatar-item">
+                                <img src="../Img/RyuLeo.png" alt="Ryu Hayabusa" width="150" draggable="true">
+                            </div>
+                            <div class="avatar-item">
+                                <img src="../Img/Peludito.png" alt="Peludito Kl" width="150" draggable="true">
+                            </div>
+                            <div class="avatar-item">
+                                <img src="../Img/Patibio.png" alt="Carlos Patito" width="150" draggable="true">
+                            </div>
+                            <div class="avatar-item">
+                                <img src="../Img/Angeloo.png" alt="Angeloo" width="150" draggable="true">
+                            </div>
+                            <div class="avatar-item">
+                                <img src="../Img/Alexandros.png" alt="AlexandroEM" width="150" draggable="true">
+                            </div>
+                        </div> <!--Fin del contenedor de las opciones de avatares-->
+                    </div> <!--Fin del contenedor de la seccion del avatar-->
+                    <div id="form-inputs"> <!--Contenedor de inputs de formulario-->
+                        <div class="item-form"> <!--Nombre de jugador (nickname)-->
+                            <div class="to-change">
+                                <div class="jap-text">
+                                    <label for="nickname">被害者の名前を変更しますか?: </label>
+                                </div>
+                                <div class="esp-text">
+                                    <label for="nickname">¿Quieres renombrar a la victima?: </label>
+                                </div>
+                            </div>
+                            <input type="text" name="nickname" id="nickname" minlength="2"> <!--required-->
+                        </div> <!--Fin del nombre de jugador (nickname)-->
+                        <div class="item-form"> <!--Correo electrónico del jugador-->
+                            <div class="to-change">
+                                <div class="jap-text">
+                                    <label for="e-mail">電子メールを入力してください: </label>
+                                </div>
+                                <div class="esp-text">
+                                    <label for="e-mail">Por favor, ingrese su correo electrónico: </label>
+                                </div>
+                            </div>
+                            <input type="email" id="email" name="email" placeholder="nobody@nowhere.hell" > <!--required-->
+                        </div> <!--Correo electrónico del jugador-->
+                    </div> <!--Fin del contenedor de inputs de formulario-->
+                    <div id="buttons"> <!--Contenedor de botones y submit de formulario-->
+                        <a id="about" href="../Views/about.html">𐕣</a>
+                        <button class="button-89" role="button" type="submit">× Iniciar el calvario ×</button> <!--id="start-button"-->
+                        <a id="scores-button" href="../Views/records.html">Estadisticas</a>
+                    </div> <!--Fin del contenedor de botones y submit de formulario-->
+                </form>
+            </section> <!--Fin del contenedor del formulario-->
+        </main>
+        <footer>
+            <p>&copy; 2024 - Alexandros Estrella de la Mañana.</p>
+        </footer>
+        <!-- <script src="../../Data/LocalData.js"></script> -->
+        <script src="../../Data/Data.js"></script>
+        <script src="../../Business/App.js""></script>
+        <script src="../Animations/Animations.js"></script>
+    </body>
+</html>
+
+
+<!--TAREA: REACER EL CALABOZO DE PYTHON A NODE.JS PARA POSTERIORMENTE ADAPTARLO A JS-->
+<!-- TAREA: VER COMO OBTENER FUNCIONES DE OTROS DOCUMENTOS ASI COMO TEXTO PARA PODER IMPRIMIR COSAS DESDE OTRO DOC-->
+
+<!--TAREA PARA EL FINAL: REHACER LA pAGINA HELLO WORLD PARA QUE SEA UN ABOUT ME (SOLO VER QUE QUITAR Y PONER< ADEMAS DE REESTRUCTURAR)-->
+<!--TAREA: AGREGAR SWEET ALERTS-->
+<!--IDEA: TRATAR DE QUE SE ENVÍE UN CORREO ELECTRONICO AUTOMÁTICO AL PRESIONAR EL BOTON DE INICIAR
+(AL CORREO QUE INTRODUJO EL USUARIO CON UN CREEPY PIXEL ART AGRADECIENDOLE POR JUGAR)-->
+
+<!--IDEA: EL LOCAL STORAGE SE VA A IMPLEMENTAR GENERANDO UNA TABLA DE HISTORIAL DE JUGADORES, MOSTRANDO:
+1. Personaje(Nombre que asignaron al avatar)
+2. Correo Electronico registrado
+3. Numero de muertes
+4. Si sacaron final bueno, malo, o ambos-->

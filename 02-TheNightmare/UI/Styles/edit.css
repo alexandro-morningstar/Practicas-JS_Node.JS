@@ -1,0 +1,86 @@
+/*General Selectors*/
+body {
+    margin-top: 20px;
+    background-color: #202124;
+    color: white;
+}
+
+main {
+    margin-top:75px;
+    margin-bottom: 70px;
+    border-left: 1px solid #5492B9;
+    border-right: 1px solid #5492B9;
+    padding: 0px 10px 0px 10px;
+}
+
+hr {
+    color: #5492B9;
+}
+
+input[type=search] {
+    background-color: #353535;
+    border: 1px solid #5492B9;
+}
+
+
+/*Class Selectors*/
+.navbar.fixed-bottom {
+    background-color: #202124;
+}
+
+.navbar.fixed-top {
+    background-color: #202124;
+}
+
+
+/*ID Selectors*/
+#colorplaceholder::placeholder {
+    color: white;
+}
+
+#adviceNullRecord, #success {
+    text-align: center;
+}
+
+#main-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form-margin {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    position: relative;
+    padding: 50px 0;
+    margin: 0 auto;
+    /* border: 1px solid white; */
+}
+
+#form-margin::before, #form-margin::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 25%;
+    height: 1px;
+    background-color: #5492B9;
+}
+
+#form-margin::before {
+    left: 0;
+    margin-left: -5px;
+}
+
+#form-margin::after {
+    right: 0;
+    margin-right: -5px;
+}
+
+#container-form {
+    width: 50%;
+    padding: 20px;
+    border-left: 1px solid #5492B9;
+    border-right: 1px solid #5492B9;
+    align-self: center;
+}

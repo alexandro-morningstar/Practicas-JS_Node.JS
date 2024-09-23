@@ -1,0 +1,68 @@
+/*General Selectors*/
+body {
+    margin-top: 20px;
+    background-color: #202124;
+    color: white;
+}
+
+main {
+    margin-top:75px;
+    margin-bottom: 70px;
+    border-left: 1px solid #5492B9;
+    border-right: 1px solid #5492B9;
+    padding: 0px 10px 0px 10px;
+}
+
+hr {
+    color: #5492B9;
+}
+
+input[type=search] {
+    background-color: #353535;
+    border: 1px solid #5492B9;
+}
+
+table {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+}
+
+/*Class Selectors*/
+.navbar.fixed-bottom {
+    background-color: #202124;
+}
+
+.navbar.fixed-top {
+    background-color: #202124;
+}
+
+.table-actions {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+
+/*ID Selectors*/
+#colorplaceholder::placeholder {
+    color: white;
+}
+
+#recordCount {
+    color: #5492B9;
+}
+
+#confirmDelete {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20px;
+}
+
+#adviceNullRecord, #success {
+    text-align: center;
+}

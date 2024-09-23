@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/purcharse.css">
+        <title>Pedido</title>
+    </head>
+    <body>
+        <header>
+            <h2>Resumen de compra</h2>
+        </header>
+        <main>
+            <section id="components-summary">
+                <div id="MoBo" class="componentInCart">
+                    <img src="" width="50" draggable="true" class="MoBo">
+                    <p class="component-description">MoBo</p>
+                </div>
+                <div id="CPU" class="componentInCart">
+                    <img src="" width="50" draggable="true" class="CPU">
+                    <p class="component-description">CPU</p>
+                </div>
+                <div id="RAM" class="componentInCart">
+                    <img src="" width="50" draggable="true" class="RAM">
+                    <p class="component-description">RAM</p>
+                </div>
+                <div id="GPU" class="componentInCart">
+                    <img src="" width="50" draggable="true" class="GPU">
+                    <p class="component-description">GPU</p>
+                </div>
+                <div id="HDD" class="componentInCart">
+                    <img src="" width="50" draggable="true" class="HDD">
+                    <p class="component-description">HDD</p>
+                </div>
+                <div id="PSU" class="componentInCart">
+                    <img src="" width="50" draggable="true" class="PSU">
+                    <p class="component-description">PSU</p>
+                </div>
+            </section>
+            <section id="totalCost">
+                <div id="cost">
+                    <h2 id="totalCost"></h2>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <!-- <form id="back" action="index.html"> -->
+                <button id="back" class="button-36" role="button" type="submit">Regresar</button>
+                <!-- <button id="back" type="submit">Regresar</button> -->
+            <!-- </form> -->
+        </footer>
+        <script src="../../Data/purcharseData.js"></script>
+        <script src="../../Controller/purcharse.js"></script>
+    </body>
+</html>

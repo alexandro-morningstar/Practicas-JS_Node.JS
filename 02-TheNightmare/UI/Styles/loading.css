@@ -1,0 +1,37 @@
+/* Selectores Generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Selectores de clase */
+.loading-container {
+    width: 300px;
+    height: 50px;
+    background-color: #000;
+    border: 4px solid #fff; /* Borde blanco pixelado */
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.loading-bar {
+    width: 0;
+    height: 100%;
+    background-color: #fff;
+    animation: load 3s linear forwards; /* Animación de 3 segundos */
+}
+
+@keyframes load {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}

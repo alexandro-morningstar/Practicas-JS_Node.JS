@@ -1,0 +1,289 @@
+/*--------------- Selectores Generales ---------------*/
+
+/* Quicksand */
+body {
+    font-family: "Playfair Display", "sans-serif";
+    background-color: black;
+    color: white;
+}
+
+main {
+    width: 900px;
+    margin: 0 auto 50px auto;
+    /* border: 1px solid white; */
+    /* text-align: center; */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    font-size: 25px;
+}
+
+input[type="text"], input[type="email"] {
+    background-color: black;
+    color: aliceblue;
+    font-family: "Quicksand";
+    font-size: 20px;
+    margin-top: 10px;
+    border: 1px inset white;
+    text-align: center;
+    padding: 5px;
+    width: 300px;
+    height: 30px;
+}
+
+footer {
+    background-color: #000;
+    position: fixed;
+    bottom: 0%; /*pegado abajo*/
+    width: 100%;
+    text-align: center;
+    padding: 5px 0px 20px 0px;
+}
+
+a{
+    text-decoration: underline;
+    color: aliceblue;
+    font-family: "Quicksand";
+    font-size: small;
+}
+/*--------------- Selectores de Clase ---------------*/
+/*------ zona de avatares ------*/
+.avatar-item {
+    border: 1px solid darkgrey;
+    width: 150px;
+    height: 150px;
+    /* padding: 5px 0px 5px 0px; */
+}
+
+/*------ zona de inputs ------*/
+.item-form {
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.to-change {
+    margin: 0px auto 0px auto;
+    position: relative;
+    width: 450px;
+    height: 28px;
+    overflow: hidden;
+}
+
+.jap-text, .esp-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s;
+    text-align: center;
+    align-items: center;
+}
+
+.esp-text {
+    opacity: 0;
+    z-index: 1;
+}
+
+.jap-text.glitch {
+    animation: glitch 0.5s;
+}
+
+/*------ Botón para iniciar juego ------*/
+.button-89 {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #ffffff;
+
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+        conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+        var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-family: "Playfair Display", "sans-serif";
+    font-size: 16px;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-89:hover, .button-89:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+}
+
+.button-89:active {
+    background: var(--color);
+    color: #fff;
+}
+
+/*--------------- Selectores de ID ---------------*/
+/*------ zona de header ------*/
+#error {
+    text-align: center;
+    color: #fd0c49;
+    font-weight: 300;
+    font-size: 15px;
+    margin: 5px 0px 5px 0px;
+}
+
+/*------ zona de titulo ------*/
+#title {
+    margin: 30px auto 0 auto;
+    width: 500px;
+    height: 220px;
+    overflow: hidden;
+    font-size: 100px;
+}
+
+#jap-title, #esp-title {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s;
+    text-align: center;
+    align-items: center;
+}
+
+#esp-title {
+    opacity: 0;
+    z-index: 1;
+}
+
+#jap-title.glitch {
+    animation: glitch 0.5s;
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(42px, 9999px, 44px, 0);
+    }
+    10% {
+        clip: rect(30px, 9999px, 38px, 0);
+    }
+    20% {
+        clip: rect(20px, 9999px, 20px, 0);
+    }
+    30% {
+        clip: rect(34px, 9999px, 44px, 0);
+    }
+    40% {
+        clip: rect(45px, 9999px, 50px, 0);
+    }
+    50% {
+        clip: rect(35px, 9999px, 20px, 0);
+    }
+    60% {
+        clip: rect(20px, 9999px, 35px, 0);
+    }
+    70% {
+        clip: rect(32px, 9999px, 32px, 0);
+    }
+    80% {
+        clip: rect(45px, 9999px, 50px, 0);
+    }
+    90% {
+        clip: rect(20px, 9999px, 30px, 0);
+    }
+    100% {
+        clip: rect(42px, 9999px, 44px, 0);
+    }
+}
+
+/*------ zona de avatares ------*/
+#avatar {
+    float: left;
+}
+
+#avatar-label {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+#avatar-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#avatar-container {
+    display: flex;
+    border: 3px double darkgrey;
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    margin-left: 40px;
+}
+
+#avatar-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 0px;
+}
+
+/*------ zona de inputs ------*/
+#form-inputs {
+    text-align: center;
+}
+
+#buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#about {
+    grid-column: 1/2;
+    align-self: center;
+    justify-self: start;
+}
+
+#start-button {
+    grid-column: 2/3;
+    align-self: center;
+    justify-self: center;
+}
+
+#scores-button{
+    grid-column: 3/4;
+    align-self: center;
+    justify-self: end;
+}
+
+/*Solución facil para la animación de fundido del titulo*/
+/*
+#title {
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+}
+
+#jap-title, #esp-title {
+    position: absolute;
+    transition: opacity 0.5s;
+}
+
+#esp-title {
+    opacity: 0;
+    z-index: 1;
+}
+
+#title:hover #jap-title {
+    opacity: 0;
+    z-index: 0;
+}
+
+#title:hover #esp-title {
+    opacity: 1;
+}
+*/
