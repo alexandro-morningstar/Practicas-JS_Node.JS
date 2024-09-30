@@ -11,7 +11,9 @@
 
 
 /* --------------- Funciones de eventos ---------------  */
-
+function init() {
+    return true;
+}
 
 /* --------------- Evento DOM ---------------  */
 document.addEventListener("DOMContentLoaded", (e) => { //Inmediatamente despues de la carga del DOM...

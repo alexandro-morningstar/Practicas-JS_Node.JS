@@ -29,7 +29,8 @@ function repeatedPlayer(nickname, email) {
     for (var record of history) {
         // console.log("")
         if(record.player == nickname || record.mail == email) { //Si hay alguna coincidencia en nombre o correo...
-            return [idRepetido, record.player, record.mail]; //...devuelve la posición del id en donde se encontró la coincidencia (iteración donde se encontró)
+            //return [idRepetido, record.player, record.mail]; //...devuelve la posición del id en donde se encontró la coincidencia (iteración donde se encontró)
+            return `${record.player} (${record.mail}) con ID: ${idRepetido}`;
         } else { //Si no se encuentra coincidencia en este registro...
             idRepetido++; //...aumenta 1 al indice y avanza a la siguiente iteración.
         };
@@ -64,6 +65,7 @@ function checkInputs(e) { //Solo manejamos los datos de inputs, toda la lógica 
                     let thisIsYou = window.confirm(`Acaso usted es el mismisimo ${isRepeated}?`); //mostramos en un alert la información correspondiente al registro "repetido" y preguntamos si es ese el jugador que intenta ingresar: */
                     if (thisIsYou){ /* - Si responde SI: inicia la aventura pero recuperando la información del jugador (y estadisticas) */
                         //window.alert("Tecnicamente aqui debería lanzar el juego con la información recuperada del jugador");
+                        saveSessionInfo(avatarImg, nickname);
                         window.location="game.html";
                     } else {/*- Si responde NO: mandamos mensaje de "error", porque ya existe el jugador*/
                         throwError(isRepeated[1], isRepeated[2]);
