@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+        <script src="../Animations/jQuery.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
@@ -12,32 +13,26 @@
         <title>The Nightmare</title>
     </head>
     <body>
-        <!--Inicio de prueba de efecto de lluvia-->
+        <!--Inicio de efecto de lluvia-->
         <div class="rain front-row"></div>
         <div class="rain back-row"></div>
-        <!--Final de prueba de efecto de lluvia-->
-        <!--Inicio de prueba de imagen sobrepuesta al todo el texto-->
+        <!--Final de efecto de lluvia-->
+        <!--Inicio de contenedor de imagen ascii-->
         <div id="ascii-art"></div>
-        <!--Final de prueba de imagen sobrepuesta al todo el texto-->
+        <!--Final de contenedor de imagen ascii-->
         <header>
             <span>Ultima elección del jugador: </span>
         </header>
         <main>
             <section id="text">
-                <div id="narration">
-                    <h2>Narración: </h2>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc egestas, quam sed accumsan consectetur, lorem lorem porttitor odio, sit amet pellentesque risus orci eu arcu. In hac habitasse platea dictumst. Sed aliquam blandit turpis, nec pulvinar lectus tempor et. Nunc ultricies venenatis erat, ac vehicula erat elementum vel. Nullam efficitur, sapien id suscipit volutpat, mauris ipsum tempor augue, nec egestas eros tellus et diam. Nulla facilisi. Vivamus accumsan tellus a libero egestas malesuada.</span>
-                </div>
+                <div id="narration"><!--Contenido generado de manera dinámica con JS--></div>
                 <hr style="color: white; margin: 0; padding: 0; width: 80%; ">
-                <div id="question">
-                    <h2>Pregunta para el jugador: </h2>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc egestas, quam sed accumsan consectetur, lorem lorem porttitor odio, sit amet pellentesque risus orci eu arcu. In hac habitasse platea dictumst. Sed aliquam blandit turpis, nec pulvinar lectus tempor et. Nunc ultricies venenatis erat, ac vehicula erat elementum vel. Nullam efficitur, sapien id suscipit volutpat, mauris ipsum tempor augue, nec egestas eros tellus et diam. Nulla facilisi. Vivamus accumsan tellus a libero egestas malesuada.</span>
-                </div>
+                <div id="question"><!--Contenido generado de manera dinámica con JS--></div>
             </section>
             <section id="actions">
-                <div id="a-option" class="card gothic-frame"><!--Texto generado de manera dinámica con JS-->Opción A</div>
+                <div id="a-option" class="card gothic-frame"><!--Texto generado de manera dinámica con JS--></div>
                 <div id="choice" class="card">→⛧←</div>
-                <div id="b-option" class="card gothic-frame"><!--Texto generado de manera dinámica con JS-->Opción B</div>
+                <div id="b-option" class="card gothic-frame"><!--Texto generado de manera dinámica con JS--></div>
             </section>
         </main>
         <footer>
@@ -45,9 +40,7 @@
             <span id="exit">Huir</span>
         </footer>
         <script src="../../Data/Data.js"></script>
-        <script src="../../Business/Game.js"></script>
+        <script src="../../Business/Game.js" type="module"></script>
         <script src="../Animations/rain.js"></script>
     </body>
 </html>
-
-<!--Agregar al CSS que a partir de cierta resolución, los tamaños sean fijos, para que no se sigan estirando al hacer la pantalla mas delgada-->
