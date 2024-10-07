@@ -13,7 +13,7 @@ import * as narration from '../Game_Scripts/nightmare-narration.js';
 import * as questions from '../Game_Scripts/nightmare-questions.js';
 
 /* --------------- Declaracion de variables globales  ---------------  */
-const narrationText = document.getElementById("narration");
+var narrationText;
 let questionText;
 let a_Option;
 let choice;
@@ -22,9 +22,10 @@ let b_Option;
 /* --------------- Llamada de funciones ---------------  */
 function intro() {
     narrationText.innerText = narration.intro();
-    narrationText.addEventListener("click", () => {
-        narrationText.innerText = "";
-    }); // AQUI NOS QUEDAMOS!-------------------------------------------------------
+    narrationText = document.getElementById("narration")
+    // narrationText.addEventListener("click", () => {
+    //     narrationText.innerText = "";
+    // });
     // setTimeout(() => {
     //     narrationText.innerText=``;
     // }, 5000);
@@ -33,18 +34,18 @@ function intro() {
 
 function init() {
     /* ------------ Captura de elementos HTML ------------  */
-    //narrationText = document.getElementById("narration");
+    narrationText = document.getElementById("narration");
     questionText = document.getElementById("question");
     a_Option = document.getElementById("a-option");
     choice = document.getElementById("choice");
     b_Option = document.getElementById("b-option");
 
     /* ------------ Asginación de eventos ------------  */
-    // narrationText.addEventListener("click", )
+    // narrationText.addEventListener("click")
 
     // let testInnerMonster = document.getElementById("ascii-art");
     // testInnerMonster.style.zIndex=0;
-    // testInnerMonster.innerText = monsterDrawer.draw_fleshFace();
+    // testInnerMonster.innerText = monsterDrawer.draw_scaryFace();
     intro();
 };
 

@@ -155,7 +155,7 @@ footer {
     #narration {
         width: 650px;
         height: 450px;
-        color: crimson;
+        /* color: crimson; */
     }
 
     #question {
@@ -168,7 +168,7 @@ footer {
     }
 
     .card {
-        color: crimson;
+        /* color: crimson; */
         width: 195px;
         height: 324px;
     }
