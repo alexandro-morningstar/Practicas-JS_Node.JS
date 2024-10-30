@@ -20,8 +20,8 @@
         <!--Inicio de contenedor de imagen ascii-->
         <div id="ascii-art"></div>
         <!--Final de contenedor de imagen ascii-->
-        <header>
-            <span>Ultima elección del jugador: </span>
+        <header id="lastOption">
+            <span>Ultima elección del jugador - </span>
         </header>
         <main>
             <section id="text">
@@ -30,17 +30,19 @@
                 <div id="question"><!--Contenido generado de manera dinámica con JS--></div>
             </section>
             <section id="actions">
-                <div id="a-option" class="card gothic-frame"><!--Texto generado de manera dinámica con JS--></div>
+                <div id="a-option" class="card gothic-frame" draggable="true"><!--Texto generado de manera dinámica con JS--></div>
                 <div id="choice" class="card">→⛧←</div>
-                <div id="b-option" class="card gothic-frame"><!--Texto generado de manera dinámica con JS--></div>
+                <div id="b-option" class="card gothic-frame" draggable="true"><!--Texto generado de manera dinámica con JS--></div>
             </section>
         </main>
         <footer>
             <span id="deads">Muertes: </span>
-            <span id="exit">Huir</span>
+            <form action="../Views/menu.html" id="exit">
+                <button type="submit">Huir</a>
+            </form>
         </footer>
         <script src="../../Data/Data.js"></script>
-        <script src="../../Business/Game.js" type="module"></script>
         <script src="../Animations/rain.js"></script>
+        <script src="../../Business/Game.js" type="module"></script>
     </body>
 </html>

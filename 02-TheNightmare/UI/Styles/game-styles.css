@@ -10,14 +10,14 @@ header {
     text-align: center; /*Centrado horizontal*/
     align-content: center; /*Centrado vertical*/
     /* border: 1px solid white; */
-    z-index: 1;
+    z-index: 4; /*Hasta el frente para sea la capa con la que interactuamos*/
 }
 
 main {
     height: 90%;
     width: 100%;
     /* border: 1px solid lightcoral; */
-    z-index: 1;
+    z-index: 4; /*Hasta el frente para sea la capa con la que interactuamos*/
 }
 
 footer {
@@ -27,13 +27,12 @@ footer {
     grid-template-columns: 1fr 1fr;
     padding: 0px 20px 0px 20px;
     /* border: 1px solid lightgreen; */
-    z-index: 1;
+    z-index: 4; /*Hasta el frente para sea la capa con la que interactuamos*/
 }
 
 
 /*Selectores de ID*/
 #ascii-art {
-    z-index: 0;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -42,6 +41,7 @@ footer {
     white-space: pre;
     background-color: black;
     color: white;
+    z-index: 0; /*El ascii art va al fondo, cambia a 5 cuando es llamado para sobreponerse*/
 }
 
 #text {
@@ -65,6 +65,7 @@ footer {
     height: 50%;
     width: 70%;
     align-content: center;
+    font-size: large;
     /* border: 1px solid lightgreen; */
 }
 
@@ -147,7 +148,7 @@ footer {
     border: 3px solid white;
     border-radius: 10px;
     box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
-    z-index: -1;
+    z-index: 3; /*La decoración de los frames va entre los elementos principales (header/main/footer) y la lluvia*/
 }
 
 
@@ -172,4 +173,9 @@ footer {
         width: 195px;
         height: 324px;
     }
+}
+
+button {
+    background-color: #000;
+    color: aliceblue;
 }
