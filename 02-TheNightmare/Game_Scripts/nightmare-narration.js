@@ -54,6 +54,15 @@ let _a04 = () => {
             </span>`;
 };
 
+let _death01 = () => {
+    return `<span>
+                Caminas dutante unos segundos hasta que te percatas de la inusual profundidad del pasillo, al intentar regresar no eres capáz de volver al punto de partida.<br><br>
+                Continúas con la esperanza de salir en algún momento, pero la esperanza sí muere, junto contigo.<br><br>
+                "No todo tiene porque ser un aprendizaje, a veces solo se falla y ya..." <br><br>
+                - Click aquí para continuar -
+            </span>`;
+};
+
 export {
     intro,
     _n01,
@@ -61,5 +70,6 @@ export {
     _a03,
     _morteCoinTrue,
     _morteCoinFalse,
-    _a04
+    _a04,
+    _death01
 };
