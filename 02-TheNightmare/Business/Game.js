@@ -27,6 +27,7 @@ var dagger = false;
 var ranNumber1 = getRandomNumber();
 var ranNumber2 = getRandomNumber();
 var ranNumber3 = getRandomNumber();
+var election = "";
 
 /* ------------ Del documento ------------  */
 var asciiImage;
@@ -38,11 +39,38 @@ var choiceBox;
 var optionBoxB;
 var deadsCounter;
 var exitButton;
-var election;
+
 
 /* --------------- Definición y llamada de funciones ---------------  */
 
-// MOVER ESTOS DRAGSTART ARRIBA
+// Remover todos los EventListener de drop
+function clearChoiceBoxListeners() {
+    choiceBox.removeEventListener("drop", wakeOrStay);
+    choiceBox.removeEventListener("drop", takeOrNotCoin);
+    choiceBox.removeEventListener("drop", leftOrRight);
+    //choiceBox.removeEventListener("drop", );
+};
+
+/**
+ * Únicamente elimina las imagenes dentro de las opciones y el texto de la pregunta actual, no altera los event listener de los elementos.
+ * @date 2024-10-30
+ */
+function clearOptionsAndQuestion() {
+    questionBox.innerHTML=``;
+    optionBoxA.innerHTML=``;
+    optionBoxB.innerHTML=``;
+};
+
+/**
+ * Unicamente inserta las imagenes dentro de las opciones, no altera los event listener de los elementos.
+ * @date 2024-10-30
+ */
+function setYesNoOptions() {
+    optionBoxA.innerHTML=questions.yes();
+    optionBoxB.innerHTML=questions.no();
+}
+
+//
 let dragstartOptA = () => {
     election = optionBoxA.querySelector("img").alt; //Los valores de la opción los almacenamos en el texto alternativo de las imagenes.
 };
@@ -57,12 +85,14 @@ let dragEventsActivator = () => { //Agrega los eventListeners de los eventos dra
     optionBoxA.addEventListener("dragstart", dragstartOptA);
     optionBoxB.addEventListener("dragstart", dragstartOptB);
     choiceBox.addEventListener("dragover", dragoverPrevent);
+    setYesNoOptions(); //Siempre va de la mano el activar los eventos de Drag&Over y las imagenes de las opciones, entonces llamamos desde aqui.
 }
 
 let dragEventsDeactivator = () => { //Remove los eventListeners de los eventos drag(start-over)
     optionBoxA.removeEventListener("dragstart", dragstartOptA);
     optionBoxB.removeEventListener("dragstart", dragstartOptB);
     choiceBox.removeEventListener("dragover", dragoverPrevent);
+    clearOptionsAndQuestion(); //Siempre va de la mano el desactivar los eventos de Drag&Over y las imagenes de las opciones, entonces llamamos desde aqui.
 };
 
 
@@ -70,49 +100,30 @@ function setLastOption(lastOption) {
     lastOptionBox.innerHTML = `<span> Ultima elección del jugador - ${lastOption} </span>`;
 };
 
-/**
- * Únicamente elimina las imagenes dentro de las opciones y el texto de la pregunta actual, no altera los event listener de los elementos.
- * @date 2024-10-30
- */
-function clearOptionsAndQuestion() {
-    questionBox.innerHTML=``;
-    optionBoxA.innerHTML=``;
-    optionBoxB.innerHTML=``;
-};
 
 
-/**
- * Unicamente inserta las imagenes dentro de las opciones, no altera los event listener de los elementos.
- * @date 2024-10-30
- */
-function setYesNoOptions() {
-    optionBoxA.innerHTML=questions.yes();
-    optionBoxB.innerHTML=questions.no();
-}
+
+
 //-------------------------- INICIO: Bloque de muertes --------------------------
 function death01() {
-    // Nunca olvidar remover los eventListener!!
-    asciiImage.removeEventListener("click", death01);
+    asciiImage.removeEventListener("click", death01); //Remover el evento click que nos trajo aquí.
 
-    // Limpiar el arte ASCII y devolver el z-index al fondo.
-    asciiImage.innerText=``;
-    asciiImage.setAttribute("style", "z-index: 0;");
+    asciiImage.innerText=``; // Limpiar el arte ASCII.
+    asciiImage.setAttribute("style", "z-index: 0;"); //Devolver el z-index al fondo.
     
     narrationBox.innerHTML = narration._death01(); //Insertar narración "final"
 
     deaths += 1; // Una vez entrado aquí ya se contabiliza la muerte.
 
-    narrationBox.addEventListener("click", fromTheDeath); //Mandar a theNightmare o a init????
+    narrationBox.addEventListener("click", fromTheDeath);
 };
 //-------------------------- FINAL: Bloque de muertes --------------------------
 
 //-------------------------- INICIO: Bloque de Pasillo - Izquierda o Derecha --------------------------
 function leftOrRight() {
-    if(election != undefined || election != null) {
-        dragEventsDeactivator(); // Sí ya se tomó una opción válida removemos los eventos drag&drop...
-        clearOptionsAndQuestion(); // y limpiamos las imagenes de opciones.
+    if(election != undefined || election != null || election != "") {
+        dragEventsDeactivator(); //Si ya viene un valor válido en election entonces se pueden desactivar las casillas de opciones, de elección y remover las imagenes de las tarjetas.
         if (election == "yes") { //Para no trabajar con más variables y meter más referencias, "yes" será "izquierda"
-            choiceBox.removeEventListener("drop", leftOrRight);
             setLastOption("Dirección: Izquierda");
             asciiImage.innerText = monsterDrawer.draw_skullURD(); // Se dibuja el arte ascii
             asciiImage.setAttribute("style", "z-index: 5;"); // Se cambia el z-index hasta el frente.
@@ -123,15 +134,18 @@ function leftOrRight() {
     } else { return false }; //No sucede nada hasta que el jugador realiza un acción válida.
 };
 
-let addDropEventLeftOrRight = () => {choiceBox.addEventListener("drop", leftOrRight)};
+let addDropEventLeftOrRight = () => {// Función intermedia de control.
+    clearChoiceBoxListeners(); //Limpiamos todos los listeners posibles de drop antes de asignar el nuevo.
+    choiceBox.addEventListener("drop", leftOrRight);// Asigna el listener de drop para este caso.
+};
 
 function corridor() {
-    narrationBox.removeEventListener("click", corridor);
+    narrationBox.removeEventListener("click", corridor); //Remover el evento click que nos trajo aquí.
+
     narrationBox.innerHTML=narration._a04();
     questionBox.innerHTML=questions._qa02();
 
     dragEventsActivator();
-    setYesNoOptions();
 
     addDropEventLeftOrRight();
 };
@@ -139,17 +153,14 @@ function corridor() {
 
 //-------------------------- Referencia visual: Bloque de lógica --------------------------
 function takeOrNotCoin() {
-    if (election != undefined || election != null) {
-        dragEventsDeactivator(); //Si ya viene un valor válido en election entonces ya podemos desactivar las casillas de opciones y elección (puede interferir desactivar el over antes de tiempo?)
-        clearOptionsAndQuestion();
+    if (election != undefined || election != null || election != "") {
+        dragEventsDeactivator(); //Si ya viene un valor válido en election entonces se pueden desactivar las casillas de opciones, de elección y remover las imagenes de las tarjetas.
         if (election == "yes") {
-            choiceBox.removeEventListener("drop", takeOrNotCoin); //Se remueve el evento para este drop
             setLastOption("Tomaste: Modena Morte");
             morteCoin = true;
             narrationBox.innerHTML=narration._morteCoinTrue();
             narrationBox.addEventListener("click", corridor); //REMOVER EN LA SIGUIENTE FUNCION
         } else {
-            choiceBox.removeEventListener("drop", takeOrNotCoin);
             setLastOption("Ignoraste: Modena Morte");
             narrationBox.innerHTML=narration._morteCoinFalse();
             narrationBox.addEventListener("click", corridor); //REMOVER EN LA SIGUIENTE FUNCION
@@ -157,7 +168,10 @@ function takeOrNotCoin() {
     } else {return false}; //No sucede nada hasta que el jugador realiza un acción válida.
 };
 
-let addDropEventMorteCoin = () => { choiceBox.addEventListener("drop", takeOrNotCoin); };
+let addDropEventMorteCoin = () => { 
+    clearChoiceBoxListeners(); //Limpiamos todos los listeners posibles de drop antes de asignar el nuevo.
+    choiceBox.addEventListener("drop", takeOrNotCoin);
+};
 
 function wakeUp() {
     setLastOption("Levantarse de la cama: sí."); //Registramos la ultima opción.
@@ -180,33 +194,23 @@ function stayInBed() {
     return false;
 };
 
-//-------------------------- Referencia visual: Bloque de lógica --------------------------
-
+//-------------------------- INICIO: Bloque INICIO DEL JUEGO: Levantase o quedarse acostado --------------------------
 function wakeOrStay() { // El evento de drop significa que ya se ha tomado una decisión y podemos continuar.
-    if (election != undefined || election != null) {
+    if (election != undefined || election != null || election != "") {
         dragEventsDeactivator(); //Si ya viene un valor válido en election entonces ya podemos desactivar las casillas de opciones y elección (puede interferir desactivar el over antes de tiempo?)
         clearOptionsAndQuestion();
         if (election == "yes") {
-            choiceBox.removeEventListener("drop", wakeOrStay); //Se remueve el evento para este drop
             wakeUp(); //Continua el juego
         }
         else {
-            choiceBox.removeEventListener("drop", wakeOrStay);
             stayInBed();
         };
     } else {return false}; //No sucede nada hasta que el jugador realiza un acción válida.
 };
 
-let addDropEventWakeOrStay = () => { choiceBox.addEventListener("drop", wakeOrStay); }; //Usamos una sola función base para poder remover el eventListener drop más adelante
-
-function fromTheDeath(){
-    // Función intermedia de control, cuando morimos llegamos aquí para limpiar todo antes de iniciar la siguiente vida
-    // AQUI NOS QUEDAMOS, AVERIGUAR PORQUE AL MORIR SE MANTIENE EL LISTENER DE LEFTORRIGHT!!!!
-    narrationBox.removeEventListener("click", init);
-    dragEventsDeactivator();
-    clearOptionsAndQuestion();
-
-    narrationBox.addEventListener("click", theNightmare);
+let addDropEventWakeOrStay = () => { // Función intermedia de control.
+    clearChoiceBoxListeners(); //Limpia todos los listeners posibles de drop antes de asignar el nuevo.
+    choiceBox.addEventListener("drop", wakeOrStay); // Asigna el listener de drop para este caso.
 };
 
 /**
@@ -214,20 +218,47 @@ function fromTheDeath(){
  * @date 2024-10-30
  */
 function theNightmare() {
-    //narrationBox.removeEventListener("click", theNightmare);
+    narrationBox.removeEventListener("click", theNightmare); //Si vengo de "otra vida", desactivo el listener de click que me trajo aquí.
+
+    dragEventsDeactivator() //Desactivo todo (imagenes y eventos Drag&Drop)
+
     narrationBox.innerHTML = narration.intro();
     narrationBox.addEventListener("click", () => {
-        // Insertamos el texto para narrar y preguntar (en caso de ser necesario), como la pregunta exije un sí o no, insertamos el yes-no general.
-        narrationBox.innerHTML=narration._n01();
+        narrationBox.innerHTML=narration._n01(); // Insertamos el texto para narrar y preguntar (en caso de ser necesario), como la pregunta exije un sí o no, insertamos el yes-no general.
         questionBox.innerHTML=questions._q01();
-        setYesNoOptions();
         
-        //Activamos las cajas de opciones con listeners (se deben remover despues de las acciones?)
-        dragEventsActivator()
-        addDropEventWakeOrStay();
+        dragEventsActivator() //Activamos las cajas de opciones con listeners Drag&Over y colocamos las imagenes en las tarjetas.
+
+        addDropEventWakeOrStay(); //Llamamos a la función que asigna el evento Drop.
     });
 };
-//-------------------------- Referencia visual: Bloque de lógica --------------------------
+//-------------------------- FINAL: Bloque INICIO DEL JUEGO: Levantase o quedarse acostado --------------------------
+
+//-------------------------- INICIO: Bloque de renacimiento --------------------------
+function fromTheDeath(){ // Función intermedia de control, cuando morimos llegamos aquí para limpiar todo antes de iniciar la siguiente vida
+    narrationBox.removeEventListener("click", fromTheDeath); // Limpiamos el ultimo EventListener
+
+    dragEventsDeactivator(); //Para que no aparezcan de nuevo las opciones en las tarjetas de opciones.
+
+    /* Volvemos a inicializar las variables del juego. ¿Volver a inicializar los elementos html recapturandolos? */
+    morteCoin = false;
+    satanaCoin = false;
+    dagger = false;
+    ranNumber1 = getRandomNumber();
+    ranNumber2 = getRandomNumber();
+    ranNumber3 = getRandomNumber();
+
+    election = ""; // Resetear la elección.
+
+    narrationBox.innerText = `× ¿De nuevo? ×
+    - Click aquí para continuar -`;
+
+    deadsCounter.innerText=`Muertes: ${deaths}`; //Actualizar contador de muertes.
+    narrationBox.addEventListener("click", theNightmare);
+};
+//-------------------------- FINAL: Bloque de renacimiento --------------------------
+
+//-------------------------- INICIO: Bloque DOM: DOM Listener y carga de elementos HTML --------------------------
 /**
  * Captura todos los elementos HTML necesarios para interactuar con el juego.
  * Activa el botón para salir del juego.
@@ -267,3 +298,6 @@ document.addEventListener("DOMContentLoaded", () => { //Inmediatamente despues d
         init(); //...proseguimos.
     };
 });
+//-------------------------- FINAL: Bloque DOM: DOM Listener y carga de elementos HTML --------------------------
+
+// TERMINAR DE DELIMITAR LOS BLOQUES CON COMENTARIOS Y AGREGAR DOCUMENTACION A TODAS LAS FUNCIONES.!!
